@@ -12,10 +12,10 @@ public class VettoreTest {
 
     @BeforeEach
     void setUp() {
-        v1 = new Vettore(0, 0, 3, 4);     // it.edu.imanzetti.tpsit.Vettore di lunghezza 5
+        v1 = new Vettore(0, 0, 3, 4);     // Vettore di lunghezza 5
         v2 = new Vettore(1, 1, 4, 5);     // Stesso vettore spostato
-        v3 = new Vettore(0, 0, 1, 0);     // it.edu.imanzetti.tpsit.Vettore unitario orizzontale
-        v4 = new Vettore(-1, -1, 2, 3);   // it.edu.imanzetti.tpsit.Vettore diagonale
+        v3 = new Vettore(0, 0, 1, 0);     // Vettore unitario orizzontale
+        v4 = new Vettore(-1, -1, 2, 3);   // Vettore diagonale
     }
 
     // ===== TEST COSTRUTTORI =====
@@ -37,7 +37,7 @@ public class VettoreTest {
                 IllegalArgumentException.class,
                 () -> new Vettore(5, 5, 5, 5)
         );
-        assertEquals("it.edu.imanzetti.tpsit.Vettore nullo non consentito", exception.getMessage());
+        assertEquals("Vettore nullo non consentito", exception.getMessage());
     }
 
     @Test
@@ -130,7 +130,7 @@ public class VettoreTest {
     @DisplayName("Equals: vettori opposti")
     void testEqualsOpposti() {
         Vettore v1 = new Vettore(0, 0, 3, 4);
-        Vettore v2 = new Vettore(0, 0, -3, -4); // it.edu.imanzetti.tpsit.Vettore opposto
+        Vettore v2 = new Vettore(0, 0, -3, -4); // Vettore opposto
         Assertions.assertFalse(v1.equals(v2));
     }
 
@@ -291,10 +291,10 @@ public class VettoreTest {
 
         // Questi setter dovrebbero funzionare perché non rendono il vettore completamente nullo
         assertDoesNotThrow(() -> v.setX1(0)); // x1 = x0, ma y1 != y0
-        assertTrue(v.length() > 0, "it.edu.imanzetti.tpsit.Vettore dovrebbe essere ancora valido");
+        assertTrue(v.length() > 0, "Vettore dovrebbe essere ancora valido");
 
         assertDoesNotThrow(() -> v.setX0(0)); // Riporto x0 = x1 = 0
-        assertTrue(v.length() > 0, "it.edu.imanzetti.tpsit.Vettore dovrebbe essere ancora valido");
+        assertTrue(v.length() > 0, "Vettore dovrebbe essere ancora valido");
 
         // Ma questo dovrebbe fallire
         assertThrows(IllegalArgumentException.class, () -> v.setY1(0));
