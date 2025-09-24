@@ -1,3 +1,6 @@
+package it.edu.imanzetti.tpsit;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,10 +12,10 @@ public class VettoreTest {
 
     @BeforeEach
     void setUp() {
-        v1 = new Vettore(0, 0, 3, 4);     // Vettore di lunghezza 5
+        v1 = new Vettore(0, 0, 3, 4);     // it.edu.imanzetti.tpsit.Vettore di lunghezza 5
         v2 = new Vettore(1, 1, 4, 5);     // Stesso vettore spostato
-        v3 = new Vettore(0, 0, 1, 0);     // Vettore unitario orizzontale
-        v4 = new Vettore(-1, -1, 2, 3);   // Vettore diagonale
+        v3 = new Vettore(0, 0, 1, 0);     // it.edu.imanzetti.tpsit.Vettore unitario orizzontale
+        v4 = new Vettore(-1, -1, 2, 3);   // it.edu.imanzetti.tpsit.Vettore diagonale
     }
 
     // ===== TEST COSTRUTTORI =====
@@ -21,10 +24,10 @@ public class VettoreTest {
     @DisplayName("Costruttore principale con parametri validi")
     void testCostruttorePrincipale() {
         Vettore v = new Vettore(1, 2, 3, 4);
-        assertEquals(1, v.getX0());
-        assertEquals(2, v.getY0());
-        assertEquals(3, v.getX1());
-        assertEquals(4, v.getY1());
+        Assertions.assertEquals(1, v.getX0());
+        Assertions.assertEquals(2, v.getY0());
+        Assertions.assertEquals(3, v.getX1());
+        Assertions.assertEquals(4, v.getY1());
     }
 
     @Test
@@ -34,7 +37,7 @@ public class VettoreTest {
                 IllegalArgumentException.class,
                 () -> new Vettore(5, 5, 5, 5)
         );
-        assertEquals("Vettore nullo non consentito", exception.getMessage());
+        assertEquals("it.edu.imanzetti.tpsit.Vettore nullo non consentito", exception.getMessage());
     }
 
     @Test
@@ -43,14 +46,14 @@ public class VettoreTest {
         Vettore original = new Vettore(1, 2, 3, 4);
         Vettore copia = new Vettore(original);
 
-        assertEquals(original.getX0(), copia.getX0());
-        assertEquals(original.getY0(), copia.getY0());
-        assertEquals(original.getX1(), copia.getX1());
-        assertEquals(original.getY1(), copia.getY1());
+        Assertions.assertEquals(original.getX0(), copia.getX0());
+        Assertions.assertEquals(original.getY0(), copia.getY0());
+        Assertions.assertEquals(original.getX1(), copia.getX1());
+        Assertions.assertEquals(original.getY1(), copia.getY1());
 
         // Verifica che sia una copia indipendente
         copia.setX0(10);
-        assertNotEquals(original.getX0(), copia.getX0());
+        Assertions.assertNotEquals(original.getX0(), copia.getX0());
     }
 
     @Test
@@ -68,27 +71,27 @@ public class VettoreTest {
     @Test
     @DisplayName("Calcolo lunghezza vettore 3-4-5")
     void testLength345() {
-        assertEquals(5.0, v1.length(), 0.0001);
+        Assertions.assertEquals(5.0, v1.length(), 0.0001);
     }
 
     @Test
     @DisplayName("Calcolo lunghezza vettore unitario")
     void testLengthUnitario() {
-        assertEquals(1.0, v3.length(), 0.0001);
+        Assertions.assertEquals(1.0, v3.length(), 0.0001);
     }
 
     @Test
     @DisplayName("Calcolo lunghezza con coordinate negative")
     void testLengthNegative() {
         Vettore vNeg = new Vettore(-3, -4, 0, 0);
-        assertEquals(5.0, vNeg.length(), 0.0001);
+        Assertions.assertEquals(5.0, vNeg.length(), 0.0001);
     }
 
     @Test
     @DisplayName("Calcolo lunghezza con coordinate decimali")
     void testLengthDecimali() {
         Vettore vDec = new Vettore(0.5, 0.5, 1.5, 1.5);
-        assertEquals(Math.sqrt(2), vDec.length(), 0.0001);
+        Assertions.assertEquals(Math.sqrt(2), vDec.length(), 0.0001);
     }
 
     // ===== TEST EQUALS (UGUAGLIANZA GEOMETRICA) =====
@@ -96,39 +99,39 @@ public class VettoreTest {
     @Test
     @DisplayName("Equals: vettori geometricamente uguali")
     void testEqualsGeometrici() {
-        assertTrue(v1.equals(v2)); // Stesso vettore traslato
+        Assertions.assertTrue(v1.equals(v2)); // Stesso vettore traslato
     }
 
     @Test
     @DisplayName("Equals: vettore con se stesso")
     void testEqualsStesso() {
-        assertTrue(v1.equals(v1));
+        Assertions.assertTrue(v1.equals(v1));
     }
 
     @Test
     @DisplayName("Equals: vettori geometricamente diversi")
     void testEqualsDiversi() {
-        assertFalse(v1.equals(v3));
+        Assertions.assertFalse(v1.equals(v3));
     }
 
     @Test
     @DisplayName("Equals: confronto con null")
     void testEqualsNull() {
-        assertFalse(v1.equals(null));
+        Assertions.assertFalse(v1.equals(null));
     }
 
     @Test
     @DisplayName("Equals: confronto con oggetto diverso")
     void testEqualsOggettoDiverso() {
-        assertFalse(v1.equals("Non sono un vettore"));
+        Assertions.assertFalse(v1.equals("Non sono un vettore"));
     }
 
     @Test
     @DisplayName("Equals: vettori opposti")
     void testEqualsOpposti() {
         Vettore v1 = new Vettore(0, 0, 3, 4);
-        Vettore v2 = new Vettore(0, 0, -3, -4); // Vettore opposto
-        assertFalse(v1.equals(v2));
+        Vettore v2 = new Vettore(0, 0, -3, -4); // it.edu.imanzetti.tpsit.Vettore opposto
+        Assertions.assertFalse(v1.equals(v2));
     }
 
     @Test
@@ -136,12 +139,12 @@ public class VettoreTest {
     void testEqualsPrecisioneDouble() {
         Vettore v1 = new Vettore(0, 0, 1, 1);
         Vettore v2 = new Vettore(0.1, 0.1, 1.1, 1.1);
-        assertTrue(v1.equals(v2));
+        Assertions.assertTrue(v1.equals(v2));
 
         // Test con piccole differenze di precisione
         Vettore v3 = new Vettore(0, 0, 1.0000000001, 1);
         Vettore v4 = new Vettore(0, 0, 1, 1);
-        assertFalse(v3.equals(v4)); // Dovrebbe essere false per differenze minime
+        Assertions.assertFalse(v3.equals(v4)); // Dovrebbe essere false per differenze minime
     }
 
     // ===== TEST GETTER E SETTER =====
@@ -150,10 +153,10 @@ public class VettoreTest {
     @DisplayName("Test tutti i getter")
     void testGetters() {
         Vettore v = new Vettore(1, 2, 3, 4);
-        assertEquals(1, v.getX0());
-        assertEquals(2, v.getY0());
-        assertEquals(3, v.getX1());
-        assertEquals(4, v.getY1());
+        Assertions.assertEquals(1, v.getX0());
+        Assertions.assertEquals(2, v.getY0());
+        Assertions.assertEquals(3, v.getX1());
+        Assertions.assertEquals(4, v.getY1());
     }
 
     @Test
@@ -166,10 +169,10 @@ public class VettoreTest {
         v.setX1(7);
         v.setY1(8);
 
-        assertEquals(5, v.getX0());
-        assertEquals(6, v.getY0());
-        assertEquals(7, v.getX1());
-        assertEquals(8, v.getY1());
+        Assertions.assertEquals(5, v.getX0());
+        Assertions.assertEquals(6, v.getY0());
+        Assertions.assertEquals(7, v.getX1());
+        Assertions.assertEquals(8, v.getY1());
     }
 
     // ===== TEST TOSTRING =====
@@ -196,7 +199,7 @@ public class VettoreTest {
     @DisplayName("Test con zero e numeri negativi")
     void testZeroNegativi() {
         Vettore v = new Vettore(-5, -3, 0, 0);
-        assertEquals(Math.sqrt(34), v.length(), 0.0001);
+        Assertions.assertEquals(Math.sqrt(34), v.length(), 0.0001);
     }
 
     // ===== TEST VALIDAZIONE SETTER (DOVREBBERO IMPEDIRE VETTORI NULLI) =====
@@ -213,7 +216,7 @@ public class VettoreTest {
         );
 
         // Il vettore non dovrebbe essere nullo dopo il fallimento
-        assertEquals(1.0, v.getX1(), "X1 non dovrebbe essere cambiato dopo l'eccezione");
+        Assertions.assertEquals(1.0, v.getX1(), "X1 non dovrebbe essere cambiato dopo l'eccezione");
         assertTrue(v.length() > 0, "Il vettore non dovrebbe essere nullo");
     }
 
@@ -230,7 +233,7 @@ public class VettoreTest {
                 () -> v.setY1(0) // Questo dovrebbe fallire perché renderebbe il vettore nullo
         );
 
-        assertEquals(1.0, v.getY1(), "Y1 non dovrebbe essere cambiato dopo l'eccezione");
+        Assertions.assertEquals(1.0, v.getY1(), "Y1 non dovrebbe essere cambiato dopo l'eccezione");
     }
 
     @Test
@@ -244,7 +247,7 @@ public class VettoreTest {
                 () -> v.setX0(5) // x0 = x1 = 5, ma y0 != y1
         );
 
-        assertEquals(1.0, v.getX0(), "X0 non dovrebbe essere cambiato dopo l'eccezione");
+        Assertions.assertEquals(1.0, v.getX0(), "X0 non dovrebbe essere cambiato dopo l'eccezione");
     }
 
     @Test
@@ -260,7 +263,7 @@ public class VettoreTest {
                 () -> v.setY0(8) // Questo dovrebbe fallire perché renderebbe il vettore nullo
         );
 
-        assertEquals(1.0, v.getY0(), "Y0 non dovrebbe essere cambiato dopo l'eccezione");
+        Assertions.assertEquals(1.0, v.getY0(), "Y0 non dovrebbe essere cambiato dopo l'eccezione");
     }
 
     @Test
@@ -271,7 +274,7 @@ public class VettoreTest {
 
         // Modifiche che non rendono il vettore nullo
         v.setX0(1); // Sposto l'origine
-        assertNotEquals(lunghezzaOriginale, v.length(), "La lunghezza dovrebbe cambiare");
+        Assertions.assertNotEquals(lunghezzaOriginale, v.length(), "La lunghezza dovrebbe cambiare");
         assertTrue(v.length() > 0, "Il vettore dovrebbe essere ancora valido");
 
         v.setY1(10); // Cambio il vertice
@@ -288,10 +291,10 @@ public class VettoreTest {
 
         // Questi setter dovrebbero funzionare perché non rendono il vettore completamente nullo
         assertDoesNotThrow(() -> v.setX1(0)); // x1 = x0, ma y1 != y0
-        assertTrue(v.length() > 0, "Vettore dovrebbe essere ancora valido");
+        assertTrue(v.length() > 0, "it.edu.imanzetti.tpsit.Vettore dovrebbe essere ancora valido");
 
         assertDoesNotThrow(() -> v.setX0(0)); // Riporto x0 = x1 = 0
-        assertTrue(v.length() > 0, "Vettore dovrebbe essere ancora valido");
+        assertTrue(v.length() > 0, "it.edu.imanzetti.tpsit.Vettore dovrebbe essere ancora valido");
 
         // Ma questo dovrebbe fallire
         assertThrows(IllegalArgumentException.class, () -> v.setY1(0));
@@ -320,7 +323,7 @@ public class VettoreTest {
         Vettore v1 = new Vettore(0, 0, 3, 4);
         Vettore v2 = new Vettore(1, 1, 4, 5);
 
-        assertEquals(v1.equals(v2), v2.equals(v1), "equals deve essere simmetrico");
+        Assertions.assertEquals(v1.equals(v2), v2.equals(v1), "equals deve essere simmetrico");
     }
 
     @Test
@@ -331,7 +334,7 @@ public class VettoreTest {
         Vettore v3 = new Vettore(5, 5, 7, 8);
 
         if (v1.equals(v2) && v2.equals(v3)) {
-            assertTrue(v1.equals(v3), "equals deve essere transitivo");
+            Assertions.assertTrue(v1.equals(v3), "equals deve essere transitivo");
         }
     }
 }
